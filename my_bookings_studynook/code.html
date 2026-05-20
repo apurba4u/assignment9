@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>My Bookings - StudyNook</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .skeleton-pulse {
+            background: linear-gradient(90deg, #eff4ff 25%, #dce9ff 50%, #eff4ff 75%);
+            background-size: 200% 100%;
+            animation: shimmer 1.5s infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary": "#4648d4",
+                        "tertiary-container": "#006895",
+                        "tertiary-fixed": "#c9e6ff",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#07006c",
+                        "surface-container-highest": "#d3e4fe",
+                        "inverse-primary": "#bbc3ff",
+                        "primary": "#2039ba",
+                        "secondary-fixed-dim": "#c0c1ff",
+                        "on-error": "#ffffff",
+                        "inverse-on-surface": "#eaf1ff",
+                        "on-primary-fixed": "#000f5d",
+                        "secondary-container": "#6063ee",
+                        "on-tertiary-fixed-variant": "#004c6e",
+                        "tertiary-fixed-dim": "#89ceff",
+                        "on-surface": "#0b1c30",
+                        "primary-container": "#3e54d3",
+                        "on-surface-variant": "#444654",
+                        "on-error-container": "#93000a",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary-fixed": "#001e2f",
+                        "surface-container": "#e5eeff",
+                        "outline-variant": "#c5c5d6",
+                        "surface-tint": "#3a50d0",
+                        "surface-container-low": "#eff4ff",
+                        "primary-fixed": "#dee0ff",
+                        "inverse-surface": "#213145",
+                        "primary-fixed-dim": "#bbc3ff",
+                        "on-tertiary-container": "#bee2ff",
+                        "secondary-fixed": "#e1e0ff",
+                        "surface-container-high": "#dce9ff",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#d8dbff",
+                        "on-primary-fixed-variant": "#1c35b7",
+                        "on-primary": "#ffffff",
+                        "background": "#f8f9ff",
+                        "surface-bright": "#f8f9ff",
+                        "on-secondary-fixed-variant": "#2f2ebe",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f8f9ff",
+                        "surface-variant": "#d3e4fe",
+                        "outline": "#757685",
+                        "surface-dim": "#cbdbf5",
+                        "tertiary": "#004f72",
+                        "on-secondary-container": "#fffbff",
+                        "error-container": "#ffdad6",
+                        "on-background": "#0b1c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "base": "8px",
+                        "lg": "24px",
+                        "margin-desktop": "40px",
+                        "xl": "32px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "gutter": "24px",
+                        "2xl": "48px",
+                        "md": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "body-sm": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "label-sm": ["Geist"],
+                        "headline-xl": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                        "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                        "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                        "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col md:flex-row">
+<!-- Sidebar Navigation (Desktop) -->
+<aside class="hidden lg:flex flex-col h-screen sticky top-0 p-md w-64 bg-surface-container dark:bg-inverse-surface border-r border-outline-variant dark:border-outline">
+<div class="mb-xl px-sm">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">StudyNook</h1>
+<p class="font-label-sm text-label-sm text-on-surface-variant opacity-70">Student Booking Portal</p>
+</div>
+<nav class="flex-1 space-y-xs">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="font-label-md text-label-md">Home</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="meeting_room">meeting_room</span>
+<span class="font-label-md text-label-md">Rooms</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="add_box">add_box</span>
+<span class="font-label-md text-label-md">Add Room</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant dark:hover:bg-surface-container-highest rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="list_alt">list_alt</span>
+<span class="font-label-md text-label-md">My Listings</span>
+</a>
+<a class="flex items-center gap-md p-md bg-primary-container text-on-primary-container dark:bg-primary dark:text-on-primary rounded-lg font-bold transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+<span class="font-label-md text-label-md">My Bookings</span>
+</a>
+</nav>
+<div class="pt-md border-t border-outline-variant space-y-xs">
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-label-md text-label-md">Settings</span>
+</a>
+<a class="flex items-center gap-md p-md text-on-surface-variant hover:bg-surface-variant rounded-lg transition-all duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 flex flex-col min-h-screen">
+<!-- TopAppBar (Mobile & Shared Title) -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm h-20 flex items-center px-margin-mobile md:px-margin-desktop sticky top-0 z-10">
+<div class="flex justify-between items-center w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-md">
+<button class="lg:hidden p-sm text-on-surface">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h2 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">My Bookings</h2>
+</div>
+<div class="flex items-center gap-lg">
+<div class="hidden md:flex items-center gap-md">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="dark_mode">dark_mode</span>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant">
+<img alt="User Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a young student in a modern workspace environment. The lighting is soft and natural, emphasizing a clean and focused academic aesthetic. The background is a blurred library with cool tones, aligning with a tech-forward productivity portal style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVmlu1I0DsFiLrhWKU_vKPwFYsvmyireZmM2I5bCni8lhPIVT6QMTnanyxEDBst08TMecJaduRhRDN5cDwjiG238xYAX7jbKfy-WwyDqHYQWO5HBbXaiLNhQN1b1UCUxRaRU7iNN0eyV2xYroWaOly3c1y1qDFthC-xNVV5ep_N68LAM7Ss2DKKRGPoZGXchFprouogLVRRBiLVs35sh3R_rGBlxhT8wxoEN9cTSKBfelRqktK8SytO8ViaGqnuHhda2Yr9fhvqFo"/>
+</div>
+</div>
+</div>
+</div>
+</header>
+<section class="p-margin-mobile md:p-margin-desktop max-w-7xl mx-auto w-full space-y-2xl">
+<!-- Dashboard Stats -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-lg">
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant shadow-sm hover:-translate-y-1 transition-transform duration-200">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Active Bookings</p>
+<h3 class="font-headline-lg text-headline-lg text-primary">12</h3>
+</div>
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant shadow-sm hover:-translate-y-1 transition-transform duration-200">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Completed Sessions</p>
+<h3 class="font-headline-lg text-headline-lg text-tertiary">48</h3>
+</div>
+<div class="bg-surface-container-low p-lg rounded-xl border border-outline-variant shadow-sm hover:-translate-y-1 transition-transform duration-200">
+<p class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-xs">Total Hours</p>
+<h3 class="font-headline-lg text-headline-lg text-secondary">156h</h3>
+</div>
+</div>
+<!-- Content Header -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-md">
+<div class="space-y-xs">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Activity</h3>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Manage your upcoming and past study sessions.</p>
+</div>
+<div class="flex items-center gap-sm">
+<button class="px-md py-sm bg-surface-container border border-outline-variant rounded-lg font-label-md text-label-md hover:bg-surface-variant transition-colors">
+                        Filter
+                    </button>
+<button class="px-md py-sm bg-primary text-on-primary rounded-lg font-label-md text-label-md shadow-sm hover:brightness-110 active:scale-95 transition-all">
+                        Book New Room
+                    </button>
+</div>
+</div>
+<!-- Bookings List / Table -->
+<div class="bg-surface-container-lowest rounded-xl border border-outline-variant overflow-hidden shadow-sm">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container border-b border-outline-variant">
+<th class="p-md font-label-md text-label-md text-on-surface-variant">Room Name</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">Date</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">Time Slot</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant text-right">Total Cost</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant">Status</th>
+<th class="p-md font-label-md text-label-md text-on-surface-variant text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant">
+<!-- Row 1: Confirmed / Future -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="laptop_chromebook">laptop_chromebook</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Cyber Library Hub</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Block A, Level 4</p>
+</div>
+</div>
+</td>
+<td class="p-md font-body-md text-body-md text-on-surface">Dec 24, 2024</td>
+<td class="p-md font-body-md text-body-md text-on-surface">09:00 AM - 12:00 PM</td>
+<td class="p-md font-label-md text-label-md text-on-surface text-right">$45.00</td>
+<td class="p-md">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-green-100 text-green-800 text-[12px] font-bold">
+                                        Confirmed
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="font-label-md text-label-md text-error hover:underline active:scale-95 transition-all">Cancel</button>
+</td>
+</tr>
+<!-- Row 2: Cancelled -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md">
+<div class="flex items-center gap-md opacity-60">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="meeting_room">meeting_room</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Private Pod #04</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">North Wing</p>
+</div>
+</div>
+</td>
+<td class="p-md font-body-md text-body-md text-on-surface opacity-60">Dec 18, 2024</td>
+<td class="p-md font-body-md text-body-md text-on-surface opacity-60">02:00 PM - 04:00 PM</td>
+<td class="p-md font-label-md text-label-md text-on-surface text-right opacity-60">$20.00</td>
+<td class="p-md">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-red-100 text-red-800 text-[12px] font-bold">
+                                        Cancelled
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="font-label-md text-label-md text-on-surface-variant cursor-not-allowed opacity-30" disabled="">No Action</button>
+</td>
+</tr>
+<!-- Row 3: Skeleton State Example -->
+<tr>
+<td class="p-md"><div class="h-10 w-40 skeleton-pulse rounded"></div></td>
+<td class="p-md"><div class="h-6 w-24 skeleton-pulse rounded"></div></td>
+<td class="p-md"><div class="h-6 w-32 skeleton-pulse rounded"></div></td>
+<td class="p-md"><div class="h-6 w-16 skeleton-pulse rounded ml-auto"></div></td>
+<td class="p-md"><div class="h-6 w-20 skeleton-pulse rounded-full"></div></td>
+<td class="p-md"><div class="h-6 w-16 skeleton-pulse rounded ml-auto"></div></td>
+</tr>
+<!-- Row 4: Confirmed / Past -->
+<tr class="hover:bg-surface-container-low transition-colors">
+<td class="p-md">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded bg-surface-variant flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="groups">groups</span>
+</div>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Collaborative Studio</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Basement 1</p>
+</div>
+</div>
+</td>
+<td class="p-md font-body-md text-body-md text-on-surface">Dec 12, 2024</td>
+<td class="p-md font-body-md text-body-md text-on-surface">10:00 AM - 01:00 PM</td>
+<td class="p-md font-label-md text-label-md text-on-surface text-right">$60.00</td>
+<td class="p-md">
+<span class="inline-flex items-center px-sm py-xs rounded-full bg-green-100 text-green-800 text-[12px] font-bold">
+                                        Confirmed
+                                    </span>
+</td>
+<td class="p-md text-right">
+<button class="font-label-md text-label-md text-on-surface-variant opacity-30 cursor-not-allowed" disabled="" title="Past bookings cannot be cancelled">Cancel</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Empty State Illustration (Hidden by default, shown here for completeness) -->
+<!-- 
+            <div class="flex flex-col items-center justify-center py-2xl space-y-md">
+                <span class="material-symbols-outlined text-[64px] text-outline-variant" data-icon="event_busy">event_busy</span>
+                <h4 class="font-headline-md text-headline-md text-on-surface">No bookings found</h4>
+                <p class="text-on-surface-variant">You haven't made any reservations yet.</p>
+                <button class="px-xl py-md bg-primary text-on-primary rounded-lg font-bold">Browse Rooms</button>
+            </div>
+            -->
+</section>
+<!-- Footer -->
+<footer class="mt-auto w-full py-xl px-margin-desktop bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline flex flex-col md:flex-row justify-between items-center gap-md">
+<div class="flex flex-col items-center md:items-start">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">StudyNook</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">© 2024 StudyNook. All rights reserved.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-lg">
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Privacy Policy</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Terms of Service</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Contact Us</a>
+<a class="font-body-sm text-body-sm text-on-surface-variant hover:text-primary transition-all hover:underline" href="#">Help Center</a>
+</div>
+</footer>
+</main>
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface shadow-[0_-4px_12px_rgba(0,0,0,0.05)] flex justify-around items-center h-16 border-t border-outline-variant z-20">
+<a class="flex flex-col items-center gap-xs text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="home">home</span>
+<span class="text-[10px] font-bold">Home</span>
+</a>
+<a class="flex flex-col items-center gap-xs text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="meeting_room">meeting_room</span>
+<span class="text-[10px] font-bold">Rooms</span>
+</a>
+<a class="flex flex-col items-center gap-xs text-primary" href="#">
+<span class="material-symbols-outlined" data-icon="event_available" style="font-variation-settings: 'FILL' 1;">event_available</span>
+<span class="text-[10px] font-bold">Bookings</span>
+</a>
+<a class="flex flex-col items-center gap-xs text-on-surface-variant" href="#">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+<span class="text-[10px] font-bold">Profile</span>
+</a>
+</nav>
+</body></html>

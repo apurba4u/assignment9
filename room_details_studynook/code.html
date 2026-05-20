@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Room Details | StudyNook</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "secondary": "#4648d4",
+                      "tertiary-container": "#006895",
+                      "tertiary-fixed": "#c9e6ff",
+                      "error": "#ba1a1a",
+                      "on-secondary-fixed": "#07006c",
+                      "surface-container-highest": "#d3e4fe",
+                      "inverse-primary": "#bbc3ff",
+                      "primary": "#2039ba",
+                      "secondary-fixed-dim": "#c0c1ff",
+                      "on-error": "#ffffff",
+                      "inverse-on-surface": "#eaf1ff",
+                      "on-primary-fixed": "#000f5d",
+                      "secondary-container": "#6063ee",
+                      "on-tertiary-fixed-variant": "#004c6e",
+                      "tertiary-fixed-dim": "#89ceff",
+                      "on-surface": "#0b1c30",
+                      "primary-container": "#3e54d3",
+                      "on-surface-variant": "#444654",
+                      "on-error-container": "#93000a",
+                      "surface-container-lowest": "#ffffff",
+                      "on-tertiary-fixed": "#001e2f",
+                      "surface-container": "#e5eeff",
+                      "outline-variant": "#c5c5d6",
+                      "surface-tint": "#3a50d0",
+                      "surface-container-low": "#eff4ff",
+                      "primary-fixed": "#dee0ff",
+                      "inverse-surface": "#213145",
+                      "primary-fixed-dim": "#bbc3ff",
+                      "on-tertiary-container": "#bee2ff",
+                      "secondary-fixed": "#e1e0ff",
+                      "surface-container-high": "#dce9ff",
+                      "on-tertiary": "#ffffff",
+                      "on-primary-container": "#d8dbff",
+                      "on-primary-fixed-variant": "#1c35b7",
+                      "on-primary": "#ffffff",
+                      "background": "#f8f9ff",
+                      "surface-bright": "#f8f9ff",
+                      "on-secondary-fixed-variant": "#2f2ebe",
+                      "on-secondary": "#ffffff",
+                      "surface": "#f8f9ff",
+                      "surface-variant": "#d3e4fe",
+                      "outline": "#757685",
+                      "surface-dim": "#cbdbf5",
+                      "tertiary": "#004f72",
+                      "on-secondary-container": "#fffbff",
+                      "error-container": "#ffdad6",
+                      "on-background": "#0b1c30"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "margin-mobile": "16px",
+                      "base": "8px",
+                      "lg": "24px",
+                      "margin-desktop": "40px",
+                      "xl": "32px",
+                      "sm": "8px",
+                      "xs": "4px",
+                      "gutter": "24px",
+                      "2xl": "48px",
+                      "md": "16px"
+              },
+              "fontFamily": {
+                      "body-lg": ["Geist"],
+                      "body-sm": ["Geist"],
+                      "headline-lg-mobile": ["Geist"],
+                      "headline-md": ["Geist"],
+                      "body-md": ["Geist"],
+                      "label-sm": ["Geist"],
+                      "headline-xl": ["Geist"],
+                      "label-md": ["Geist"],
+                      "headline-lg": ["Geist"]
+              },
+              "fontSize": {
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                      "headline-lg-mobile": ["28px", {"lineHeight": "36px", "letterSpacing": "-0.01em", "fontWeight": "600"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "label-sm": ["12px", {"lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500"}],
+                      "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600"}]
+              }
+            },
+          },
+        }
+      </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(2, 200px);
+            gap: 16px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md overflow-x-hidden">
+<!-- TopNavBar -->
+<header class="bg-surface dark:bg-inverse-surface border-b border-outline-variant dark:border-outline shadow-sm dark:shadow-none sticky top-0 z-50 h-20">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-7xl mx-auto h-full">
+<div class="flex items-center gap-xl">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary-fixed">StudyNook</span>
+<nav class="hidden md:flex gap-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md" href="#">Home</a>
+<a class="text-primary dark:text-primary-fixed font-bold border-b-2 border-primary dark:border-primary-fixed pb-1 font-body-md" href="#">Rooms</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md" href="#">Add Room</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md" href="#">My Listings</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed transition-colors font-body-md" href="#">My Bookings</a>
+</nav>
+</div>
+<div class="flex items-center gap-md">
+<button class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-low rounded-full transition-all duration-200">dark_mode</button>
+<div class="flex items-center gap-sm bg-surface-container-low p-1 pr-4 rounded-full border border-outline-variant">
+<img alt="User Profile Avatar" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRQIETmC-cZv_TulwEofwGg7s7rXKgywRKww55H6Y92wCoWiahUWCChOUPhxVOdLQGmVJIqCGFgFqtIQ8tgRIE2F8WuPB20b3dT5AVKwc3aMwhwfhqvVAnA7XG-49A4vh5yayN-OJwlZROIGe_chSV4RPim6lhbpPVi5jycjcF9RDfzK59_9T97Pf0k6UJ6k81BTCLctwxR8IlsB77Y6CJ7r0vQq3zcne-YNTNzW005edfhla44xJgYGd790EdeE419h8yOhlK2Q8"/>
+<span class="font-label-md text-label-md">Alex Rivera</span>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl">
+<!-- Breadcrumbs -->
+<nav class="flex items-center gap-xs mb-lg text-on-surface-variant">
+<span class="font-label-sm text-label-sm">Rooms</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-label-sm text-label-sm">Engineering Library</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="font-label-sm text-label-sm text-primary font-bold">Room 304 - Quantum Suite</span>
+</nav>
+<!-- Asymmetric Image Gallery (Bento Style) -->
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-md h-[400px] md:h-[600px] mb-2xl rounded-xl overflow-hidden shadow-lg border border-outline-variant">
+<div class="md:col-span-2 md:row-span-2 relative group overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A spacious, high-tech study room with floor-to-ceiling windows overlooking a modern university campus at dusk. The interior features sleek ergonomic chairs and a large wooden conference table illuminated by minimalist pendant lights. The color palette is composed of soft blues, warm wood tones, and cool greys, creating a focused and premium academic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgK_b1hbpVkQYYEfVmWjZzxb319U4mTjnyOvc9AU_cUhc-lFHxx7RnGWNyCXma7YUjp7OHUl96D74iz1ie5ohJfR9o9XWKOgTrsJCjM6mUVXRwyT5eMTCOPiI_WbIsWbzqHpwTs62Gyq7QJZRKLDPZZnU8Zg9Ns12OV3DIJP4M5-kGqpaHqeU2nJUqKYv-W1Y6DnDQqDWYHm-2Oz7_KS3CnIinpwBDkGaDagGFHHNWzYhdObSILJYPEXG9G6qvipNPTouUjFy7JyQ"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-lg">
+<button class="bg-white/90 text-on-surface px-md py-sm rounded-lg font-label-md flex items-center gap-sm backdrop-blur-md">
+<span class="material-symbols-outlined">zoom_in</span> View Large
+                    </button>
+</div>
+</div>
+<div class="hidden md:block md:col-span-1 overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Close up detail of a modern university study carrel featuring built-in power outlets and high-speed ethernet ports. The lighting is crisp and cool, highlighting the brushed aluminum textures and clean white surfaces of the work area. The scene is tidy and ready for a productive session." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpNdiD-Y-Q0_HPaO5E5mB7zBfp0VGjpuNXh3RU0dV5cSiNe5fYqb8Zitns6kVI4Ae-uc-LESzR_jNX4Gqb1lr8EHOTHeyki6pPkf71BliWfxpRhUumBRE1NLsgpnHPrHhGrDCdQq1SOhU9K0FKngyxKGWW1En1m1MtFVqC5GxqYlceCNLlKKyIt_x_vq7xpVCxdWQbHQRiBimbH1uzor3HAvRt-m3AQ6uGI-cYm3ufJY4OKrKcE64kkNGSWZYAY_uZkVSpOJTUBjo"/>
+</div>
+<div class="hidden md:block md:col-span-1 overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="An expansive glass-walled collaborative workspace within a university library. The room is filled with bright natural daylight, highlighting several modern white boards and colorful ergonomic stools. The aesthetic is clean, modular, and professional, reflecting a high-performance research environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBs4L5WbTqgnrnjtMzDf11vYJfN4-Wsih6aBexWHKqSN-Q8kjRoyq0BaIkGJYlJGS2_H_iu2vlpLeiLGwUDn3VaLNj4u4AW3-_6Upc8AruXgP47HGdUIwGeTENG7iwXy1yRuT-oKH06IM5D0SB5Io3MPKjJNRgtBWoplzHfggR6SutWpmfFA-EEf_gAL5SuL32rlE0W2Q_zrg81IALnuj65JRM1k2cGb7Yd_oZkcytHjy3gGbF9KJMLvcaNeGt2J4o-ocl6VUDUvGs"/>
+</div>
+<div class="hidden md:block md:col-span-2 overflow-hidden bg-surface-variant">
+<img class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="A wide-angle shot of a premium study lounge featuring comfortable leather armchairs, a small coffee station, and bookshelves lined with academic journals. The evening lighting is warm and ambient, casting soft shadows across the polished dark wood floors. The mood is quiet, sophisticated, and intellectually stimulating." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqHBRgtaAp0xIGkGr4JSMi6ClhlSV9v2gYFFRz6YI_TTe-rbggRRtpGJOfYDZlarKu9r9fSuh9HNft5N9pKLBuWdym3kKFTJfnzLmOL9IRlrcBOO80tB6205rbcMu2VDlylfspKtl8i_x5eWP-U4kPwD1Q3Nj-w8LslzBjtEO5HAKO7jChpLe1YsPA_WopDCzyHZL5JUkeW2avUFKTIKrTgt2x_Bm_F1WKsc9-YxyvyIDIBNnnsLAbIM2xbjMrO5QYdXdIUnwpHyY"/>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-2xl">
+<!-- Details Section -->
+<div class="lg:col-span-2 space-y-2xl">
+<div>
+<div class="flex flex-wrap items-center justify-between gap-md mb-md">
+<h1 class="font-headline-xl text-headline-xl text-on-surface">Room 304 - Quantum Suite</h1>
+<div class="flex items-center gap-sm">
+<button class="flex items-center gap-xs px-md py-sm bg-surface-container hover:bg-surface-container-high text-primary rounded-lg font-label-md transition-all">
+<span class="material-symbols-outlined text-[20px]">edit</span> Edit Room
+                            </button>
+<button class="flex items-center gap-xs px-md py-sm bg-error-container hover:bg-error text-on-error-container hover:text-on-error rounded-lg font-label-md transition-all">
+<span class="material-symbols-outlined text-[20px]">delete</span> Delete
+                            </button>
+</div>
+</div>
+<div class="flex flex-wrap gap-md mb-xl">
+<div class="flex items-center gap-xs bg-secondary-fixed text-on-secondary-fixed px-md py-xs rounded-full">
+<span class="material-symbols-outlined text-[18px]">groups</span>
+<span class="font-label-md text-label-md">8 People Capacity</span>
+</div>
+<div class="flex items-center gap-xs bg-tertiary-fixed text-on-tertiary-fixed px-md py-xs rounded-full">
+<span class="material-symbols-outlined text-[18px]">layers</span>
+<span class="font-label-md text-label-md">Floor 3, South Wing</span>
+</div>
+<div class="flex items-center gap-xs bg-primary-fixed text-on-primary-fixed px-md py-xs rounded-full">
+<span class="material-symbols-outlined text-[18px]">monetization_on</span>
+<span class="font-label-md text-label-md">$15.00 / hour</span>
+</div>
+</div>
+<div class="prose max-w-none">
+<h3 class="font-headline-md text-headline-md mb-md text-on-surface">Description</h3>
+<p class="font-body-lg text-body-lg text-on-surface-variant leading-relaxed mb-md">
+                            The Quantum Suite is our flagship collaborative space, designed specifically for intensive research groups and engineering project teams. Located in the quietest sector of the South Wing, this room offers panoramic views of the campus arboretum, providing a tranquil backdrop for focused work.
+                        </p>
+<p class="font-body-md text-body-md text-on-surface-variant">
+                            Equipped with the latest interactive technology, the suite includes a 75-inch 4K touchscreen monitor, dual high-speed fiber-optic access points, and a dedicated climate control system. The acoustic paneling ensures maximum privacy for sensitive discussions or high-concentration tasks.
+                        </p>
+</div>
+</div>
+<!-- Amenities Section -->
+<div>
+<h3 class="font-headline-md text-headline-md mb-lg text-on-surface">Amenities &amp; Features</h3>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-lg">
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-xl border border-outline-variant hover:shadow-sm transition-shadow">
+<span class="material-symbols-outlined text-primary text-[32px]">wifi</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Fiber WiFi</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">1Gbps Up/Down</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-xl border border-outline-variant hover:shadow-sm transition-shadow">
+<span class="material-symbols-outlined text-primary text-[32px]">tv</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">4K Display</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">75" Interactive</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-xl border border-outline-variant hover:shadow-sm transition-shadow">
+<span class="material-symbols-outlined text-primary text-[32px]">power</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Power Hubs</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Every seat</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-xl border border-outline-variant hover:shadow-sm transition-shadow">
+<span class="material-symbols-outlined text-primary text-[32px]">ac_unit</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Air Conditioned</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Zone Control</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-xl border border-outline-variant hover:shadow-sm transition-shadow">
+<span class="material-symbols-outlined text-primary text-[32px]">coffee_maker</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Refreshments</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Complimentary</p>
+</div>
+</div>
+<div class="flex items-center gap-md p-md bg-surface-container-low rounded-xl border border-outline-variant hover:shadow-sm transition-shadow">
+<span class="material-symbols-outlined text-primary text-[32px]">shield</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface">Keyless Entry</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Secure access</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Booking Panel -->
+<aside class="lg:col-span-1">
+<div class="sticky top-24 bg-white dark:bg-inverse-surface border border-outline-variant rounded-2xl p-xl shadow-xl">
+<div class="flex justify-between items-baseline mb-xl">
+<span class="font-headline-md text-headline-md text-primary">$15.00</span>
+<span class="text-on-surface-variant font-label-md">per hour</span>
+</div>
+<div class="space-y-lg mb-2xl">
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Select Date</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl p-md font-body-md focus:ring-2 focus:ring-primary focus:border-transparent outline-none transition-all" type="date"/>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant">calendar_today</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-md">
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">Start Time</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl p-md font-body-md focus:ring-2 focus:ring-primary outline-none" type="time" value="09:00"/>
+</div>
+<div class="space-y-xs">
+<label class="font-label-sm text-label-sm text-on-surface-variant ml-1">End Time</label>
+<input class="w-full bg-surface-container-low border border-outline-variant rounded-xl p-md font-body-md focus:ring-2 focus:ring-primary outline-none" type="time" value="12:00"/>
+</div>
+</div>
+</div>
+<div class="bg-surface-container p-lg rounded-xl mb-2xl space-y-md">
+<div class="flex justify-between font-body-md">
+<span class="text-on-surface-variant">$15.00 x 3 hours</span>
+<span class="text-on-surface font-bold">$45.00</span>
+</div>
+<div class="flex justify-between font-body-md">
+<span class="text-on-surface-variant">Service Fee</span>
+<span class="text-on-surface font-bold">$2.50</span>
+</div>
+<div class="border-t border-outline-variant pt-md flex justify-between">
+<span class="font-label-md text-label-md text-on-surface">Total</span>
+<span class="font-headline-md text-headline-md text-primary">$47.50</span>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary-container text-white py-lg rounded-xl font-label-md text-[16px] shadow-lg shadow-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-md">
+<span class="material-symbols-outlined">bolt</span> Book Now
+                    </button>
+<p class="text-center mt-md font-label-sm text-label-sm text-on-surface-variant">You won't be charged yet</p>
+</div>
+</aside>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-low dark:bg-inverse-surface border-t border-outline-variant dark:border-outline mt-2xl">
+<div class="w-full py-xl px-margin-desktop flex flex-col md:flex-row justify-between items-center gap-md max-w-7xl mx-auto">
+<div class="flex flex-col items-center md:items-start gap-xs">
+<span class="font-headline-sm text-headline-sm font-bold text-primary dark:text-primary-fixed">StudyNook</span>
+<span class="font-body-sm text-body-sm text-on-surface-variant">© 2024 StudyNook. All rights reserved.</span>
+</div>
+<nav class="flex flex-wrap justify-center gap-lg">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:underline transition-all font-body-sm" href="#">Privacy Policy</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:underline transition-all font-body-sm" href="#">Terms of Service</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:underline transition-all font-body-sm" href="#">Contact Us</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary-fixed hover:underline transition-all font-body-sm" href="#">Help Center</a>
+</nav>
+</div>
+</footer>
+<!-- Mobile NavBar -->
+<nav class="md:hidden fixed bottom-0 left-0 right-0 bg-surface border-t border-outline-variant px-margin-mobile py-sm flex justify-around items-center z-50">
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">home</span>
+<span class="font-label-sm text-[10px]">Home</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-primary font-bold">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">meeting_room</span>
+<span class="font-label-sm text-[10px]">Rooms</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">add_box</span>
+<span class="font-label-sm text-[10px]">Add</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">event_available</span>
+<span class="font-label-sm text-[10px]">Bookings</span>
+</button>
+<button class="flex flex-col items-center gap-xs text-on-surface-variant">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="font-label-sm text-[10px]">Profile</span>
+</button>
+</nav>
+<!-- Success Modal (Hidden by Default) -->
+<div class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-md">
+<div class="bg-surface max-w-sm w-full rounded-2xl p-xl shadow-2xl border border-outline-variant text-center">
+<div class="w-20 h-20 bg-primary-container text-on-primary-container rounded-full flex items-center justify-center mx-auto mb-lg">
+<span class="material-symbols-outlined text-[48px]">check_circle</span>
+</div>
+<h2 class="font-headline-md text-headline-md mb-md">Booking Confirmed!</h2>
+<p class="font-body-md text-on-surface-variant mb-xl">Your study session for Room 304 has been reserved. You'll receive a confirmation email shortly.</p>
+<button class="w-full bg-primary text-white py-md rounded-xl font-label-md">Done</button>
+</div>
+</div>
+</body></html>
