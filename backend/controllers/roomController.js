@@ -110,9 +110,17 @@ const updateRoom = async (req, res, next) => {
       throw new Error('Not authorized to update this room');
     }
 
+    const allowedFields = ['name', 'description', 'image', 'floor', 'capacity', 'hourlyRate', 'amenities'];
+    const updates = {};
+    for (const key of allowedFields) {
+      if (req.body[key] !== undefined) {
+        updates[key] = req.body[key];
+      }
+    }
+
     const updatedRoom = await Room.findByIdAndUpdate(
       req.params.id,
-      { $set: req.body },
+      { $set: updates },
       { new: true, runValidators: true }
     );
 

@@ -17,6 +17,12 @@ const createBooking = async (req, res, next) => {
       throw new Error('Room not found');
     }
 
+    const timeRegex = /^([01]\d|2[0-3]):00$/;
+    if (!timeRegex.test(startTime) || !timeRegex.test(endTime)) {
+      res.status(400);
+      throw new Error('Times must be in HH:00 format (24-hour)');
+    }
+
     const startHour = parseInt(startTime.split(':')[0]);
     const endHour = parseInt(endTime.split(':')[0]);
 
